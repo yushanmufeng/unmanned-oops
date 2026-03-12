@@ -7,6 +7,10 @@
 ### Project Vision
 As AI automation is aggressively integrated into enterprise environments, many human roles are being replaced. This repository serves as a fact-based ledger to objectively track the real-world operational costs of this transition. We focus on how business logic, reliability, and governance boundaries degrade when critical human oversight and professional judgment are removed.
 
+### Live Site
+You can browse the archive online at:  
+[Unmanned Oops — Live Archive](https://yushanmufeng.github.io/unmanned-oops/)
+
 ### Archive Categories
 
 * **Systemic Failures**
