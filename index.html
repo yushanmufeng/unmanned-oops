@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unmanned Oops — Archive</title>
+    <meta
+      name="description"
+      content="A systemic archive documenting operational and reliability failures resulting from aggressive AI-driven workforce displacement across industries."
+    />
+
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #0b0f17;
+        --panel: rgba(255, 255, 255, 0.06);
+        --panel-2: rgba(255, 255, 255, 0.09);
+        --text: rgba(255, 255, 255, 0.92);
+        --muted: rgba(255, 255, 255, 0.65);
+        --muted-2: rgba(255, 255, 255, 0.45);
+        --border: rgba(255, 255, 255, 0.12);
+        --accent: #86b7ff;
+        --accent-2: #b2f5ea;
+        --danger: #ff8a8a;
+        --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+        --radius: 16px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
+        background: radial-gradient(
+            1100px 700px at 20% 10%,
+            rgba(134, 183, 255, 0.22),
+            transparent 55%
+          ),
+          radial-gradient(
+            900px 600px at 80% 25%,
+            rgba(178, 245, 234, 0.16),
+            transparent 60%
+          ),
+          radial-gradient(
+            900px 600px at 50% 90%,
+            rgba(255, 255, 255, 0.05),
+            transparent 60%
+          ),
+          var(--bg);
+        color: var(--text);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 28px 18px 48px;
+      }
+
+      .header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 14px;
+        margin-bottom: 16px;
+      }
+
+      .brand {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .brand h1 {
+        margin: 0;
+        font-size: 22px;
+        letter-spacing: 0.3px;
+      }
+
+      .brand p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.5;
+        max-width: 68ch;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--muted);
+        font-size: 12px;
+        white-space: nowrap;
+      }
+
+      .actions {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(134, 183, 255, 0.55);
+        background: linear-gradient(
+          135deg,
+          rgba(134, 183, 255, 0.18),
+          rgba(178, 245, 234, 0.08)
+        );
+        color: var(--text);
+        font-size: 12px;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        transition: transform 0.08s ease, background 0.15s ease,
+          border-color 0.15s ease;
+      }
+
+      .btn:hover {
+        text-decoration: none;
+        border-color: rgba(134, 183, 255, 0.8);
+        background: linear-gradient(
+          135deg,
+          rgba(134, 183, 255, 0.24),
+          rgba(178, 245, 234, 0.12)
+        );
+      }
+
+      .btn:active {
+        transform: translateY(1px);
+      }
+
+      .btn svg {
+        width: 16px;
+        height: 16px;
+        opacity: 0.95;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        gap: 14px;
+        align-items: start;
+      }
+
+      @media (max-width: 980px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .panel {
+        border: 1px solid var(--border);
+        background: var(--panel);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .panel-header {
+        padding: 14px 14px 12px;
+        border-bottom: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .panel-header .title {
+        font-size: 13px;
+        color: var(--muted);
+        letter-spacing: 0.3px;
+        text-transform: uppercase;
+      }
+
+      .months {
+        padding: 10px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      @media (max-width: 980px) {
+        .months {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 560px) {
+        .months {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      .month-btn {
+        width: 100%;
+        text-align: left;
+        padding: 10px 10px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--text);
+        cursor: pointer;
+        transition: transform 0.08s ease, background 0.15s ease,
+          border-color 0.15s ease;
+      }
+
+      .month-btn:hover {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(134, 183, 255, 0.38);
+      }
+
+      .month-btn:active {
+        transform: translateY(1px);
+      }
+
+      .month-btn[aria-current='true'] {
+        background: linear-gradient(
+          135deg,
+          rgba(134, 183, 255, 0.18),
+          rgba(178, 245, 234, 0.08)
+        );
+        border-color: rgba(134, 183, 255, 0.6);
+      }
+
+      .month-btn .k {
+        display: block;
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .month-btn .v {
+        display: block;
+        font-weight: 650;
+        font-size: 14px;
+        margin-top: 2px;
+      }
+
+      .month-btn .count {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 8px;
+        padding: 4px 8px;
+        border-radius: 999px;
+        font-size: 12px;
+        color: var(--muted);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.03);
+        width: fit-content;
+      }
+
+      .main {
+        padding: 14px;
+      }
+
+      .main-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .main-top .h {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .main-top h2 {
+        margin: 0;
+        font-size: 18px;
+        letter-spacing: 0.2px;
+      }
+
+      .main-top p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .card {
+        padding: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 14px;
+      }
+
+      .card h3 {
+        margin: 0 0 6px;
+        font-size: 15px;
+        line-height: 1.35;
+      }
+
+      .meta {
+        color: var(--muted-2);
+        font-size: 12px;
+        margin-bottom: 8px;
+      }
+
+      .desc {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.55;
+      }
+
+      .tags {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .tag {
+        font-size: 12px;
+        padding: 4px 8px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--muted);
+      }
+
+      .state {
+        padding: 16px;
+        border: 1px dashed rgba(255, 255, 255, 0.2);
+        border-radius: 14px;
+        color: var(--muted);
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .state strong {
+        color: var(--text);
+      }
+
+      .danger {
+        color: var(--danger);
+      }
+
+      .footer {
+        margin-top: 14px;
+        padding-top: 12px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--muted-2);
+        font-size: 12px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 14px;
+        align-items: center;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <!-- Vue 3 via CDN using native ES Modules -->
+    <script type="module">
+      import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+      import App from './public/js/app.js';
+
+      createApp(App).mount('#app');
+    </script>
+  </body>
+  </html>
